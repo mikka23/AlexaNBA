@@ -1,0 +1,25 @@
+{
+  "name": "alexanba",
+  "version": "1.0.0",
+  "description": "alexa skill server for nba",
+  "main": "alexaServer.js",
+  "dependencies": {
+    "alexa-verifier": "^0.0.5",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "nba.js": "^0.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node alexaServer.js"
+  },
+  "keywords": [
+    "nba",
+    "alexa",
+    "amazon",
+    "echo",
+    "basketball"
+  ],
+  "author": "Raj Bhanushali",
+  "license": "ISC"
+}
