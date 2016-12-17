@@ -40,7 +40,9 @@ function getLastWord( words ) {
   var n = words.split(' ');
   return n[n.length - 1];
 };
-
+function randomIntFromInterval( min, max ) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
 app.error = function( exception, request, response ) {
   response.say( 'Sorry an error occured ' + error.message);
 };
@@ -148,4 +150,26 @@ app.intent('GetUpdate',
   }
 );
 
+app.intent('insultAlice',
+  {
+    "utterances":[ 
+      "to insult Alice",
+      "to describe Alice"]
+  },
+  function ( request,response ) {
+    insults = [ 
+    'Alice is fat an ugly.',
+    'Alice looks like a beached whale.',
+    'Looking at Alice makes me physically sick.',
+    'Alice couldn\'t catch aids in Africa.',
+    'The only thing that smells worse than Alice is her father.'
+    ];
+
+    insultNum = randomIntFromInterval( 0, 4 );
+
+    response.say( insults[insultNum] );
+    response.send();
+    
+  }
+);
 module.exports = app;
