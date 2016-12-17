@@ -19,7 +19,9 @@ function getPlayerId( player ){
     }
   }
 }
-
+function toTitleCase( str ) {
+    return str.replace(/\w\S*/g, function( txt ) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); } );
+}
 app.error = function( exception, request, response ) {
   response.say( 'Sorry an error occured ' + error.message);
 };
@@ -32,7 +34,7 @@ app.intent('GetPoints',
   },
   function ( request,response ) {
     var playername = request.slot( 'playername' ),
-        playerId   = getPlayerId( playername );
+        playerId   = getPlayerId( toTitleCase( playername ) );
 
       stats.playerGamelog({ 
         PlayerID: playerId,
