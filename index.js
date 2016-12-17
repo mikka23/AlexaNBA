@@ -34,13 +34,26 @@ app.intent('GetPoints',
     var playername = request.slot( 'playername' ),
         playerId   = getPlayerId( playername );
 
-        data.standings((err, res) => {
-          var myResult = res.league.standard.teams[0].winPct;
-          console.log( myResult );
-          response.say( 'Test here' + myResult );
-          response.send();
-        });
-        return false;
+      stats.playerGamelog({ 
+        PlayerID: playerId,
+        Season: '2016-17',
+        SeasonType: 'Regular Season' 
+      })
+      .then( res => {
+       var pts = res.PlayerGameLog[0].pts,
+           reb = res.PlayerGameLog[0].reb,
+           ast = res.PlayerGameLog[0].ast,
+           stl = res.PlayerGameLog[0].stl,
+           blk = res.PlayerGameLog[0].blk,
+           tov = res.PlayerGameLog[0].tov,
+           wl  = ( 'W' === res.PlayerGameLog[0].wl ) ? 'Win' : 'Loss',
+           gd  = res.PlayerGameLog[0].game_date;
+
+        response.say( 'On ' + gd + ', in a ' + wl + ', ' + playername + ' scored ' + pts + ' points with ' + reb + ' rebounds, ' + ast + ' assists, ' + stl + ' steals, ' + blk + ' blocks and ' + tov + ' turnovers.' );
+        response.send();
+      })
+      .catch( err => console.log( err ) );
+      return false;
   }
 );
 
