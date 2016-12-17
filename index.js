@@ -6,7 +6,7 @@ const stats = require('nba.js').stats;
 var players = require('./players.json');
 var teams = require('./teams.json');
 var Alexa = require( 'alexa-app' );
-var app = new Alexa.app( 'AlexaNBA2' );
+var app = new Alexa.app( 'AlexaNBA' );
 
 app.launch( function( request, response ) {
   response.say( 'Welcome to your test skill' ).reprompt( 'Way to go. You got it to run. Bad ass.' ).shouldEndSession( false );
