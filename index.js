@@ -52,7 +52,10 @@ app.intent('GetPoints',
         response.say( 'On ' + gd + ', in a ' + wl + ', ' + playername + ' scored ' + pts + ' points with ' + reb + ' rebounds, ' + ast + ' assists, ' + stl + ' steals, ' + blk + ' blocks and ' + tov + ' turnovers.' );
         response.send();
       })
-      .catch( err => console.log( err ) );
+      .catch( err => {
+        response.say( 'Sorry, player not found or understood.' );
+        response.send();
+      } );
       return false;
   }
 );
